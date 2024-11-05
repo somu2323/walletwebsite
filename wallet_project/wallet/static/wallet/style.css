@@ -1,0 +1,46 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+h2, h3 {
+    color: #343a40; /* Dark color for headers */
+    font-weight: 500;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item i {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.btn {
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.alert {
+    margin-top: 20px;
+}

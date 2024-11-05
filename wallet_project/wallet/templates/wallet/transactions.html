@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="{% static 'wallet/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Wallet App</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pay' %}">Pay</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'request_money' %}">Request Money</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'transactions' %}">Transactions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Transaction History</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for transaction in transactions %}
+                        <li class="list-group-item d-flex align-items-center">
+                            {% if transaction.transaction_type == 'payment' %}
+                                <i class="fas fa-arrow-down text-danger mr-2"></i>
+                            {% else %}
+                                <i class="fas fa-arrow-up text-success mr-2"></i>
+                            {% endif %}
+                            <span class="flex-grow-1">{{ transaction.created_at }}:</span>
+                            <span class="{{ transaction.transaction_type }}">{{ transaction.transaction_type|title }} of ${{ transaction.amount }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item text-muted">No transactions found.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
